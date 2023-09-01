@@ -17,8 +17,35 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                  http://localhost:9099
+                </sonar.host.url>
+		            <sonar.token>sqp_aad421b0071e2afacc1c00e24e0d4a2f42a5f2d3</sonar.token>
+                <sonar.login>admin</sonar.login>
+                <sonar.password>8019508344</sonar.password>
+            </properties>
+        </profile>   
+     </profiles>
+</settings>
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+    <dependency>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+     <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.9.1.2184</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -28,7 +55,7 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --> 
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
